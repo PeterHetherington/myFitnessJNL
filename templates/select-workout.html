@@ -1,0 +1,22 @@
+{% extends "layout.html" %} {% block title %} Home {% endblock %} {% block main
+%}
+<h1>Select a workout to log</h1>
+<div class="workout-container">
+    {% for workout in workouts %}
+    <form action="/select-workout" method="post">
+                <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
+                <button type="submit" class="btn btn-secondary">
+                    <input type="hidden" name="workout_id"  value="{{ workout.id }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ workout.name }}</h5>
+                        <p class="card-text">{{ workout.description }}</p>
+                    </div>
+                </div>
+                </button>
+            </form>
+    {% endfor %}
+</div>
+<button class="btn btn-primary" onclick="location.href='/add-workout'">
+  Add a new Workout
+</button>
+{% endblock %}

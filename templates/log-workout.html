@@ -1,0 +1,85 @@
+{% extends "layout.html" %} {% block title %} Home {% endblock %} {% block main
+%}
+<h1>{{workout.name}}</h1>
+<form action="/log-workout/{{ workout.id }}" method="post">
+  {% for exercise in exercises %}
+  <div class="log-container">
+    <h2 class="exercise-title">{{exercise.name}}</h2>
+    <input type="hidden" name="exercise_id" value="{{exercise.id}}" />
+    {% if last_log %}
+    <div class="prev-log">
+      <h3>Prev session:</h3>
+      {% for log in last_log %} {% if log.exercise_id == exercise.id %}
+      <table class="prev-table">
+        <thead>
+          <th>Set</th>
+          <th>Weight</th>
+          <th>Reps</th>
+        </thead>
+        {% for set in log.sets %}
+        <tbody>
+          <tr>
+            <td>{{set.set_number}}</td>
+            <td>{{set.weight}}</td>
+            <td>{{set.reps}}</td>
+          </tr>
+        </tbody>
+        <!-- <p>Set {{set.set_number}}: {{set.weight}} x {{set.reps}}</p> -->
+        {% endfor %} {% endif %}
+      </table>
+      {% endfor %}
+    </div>
+    {% endif %}
+    <div class="log-set-container">
+      <div class="row log-sets">
+        <div class="row">
+          <input type="hidden" name="set_num" value="1" />
+          <div class="col-auto">
+            <label class="col-form-label">Set 1</label>
+          </div>
+          <div class="col">
+            <!-- <label class="form-label">Weight</label> -->
+            <input
+              class="form-control"
+              type="number"
+              name="weight"
+              placeholder="Weight"
+            />
+          </div>
+          <div class="col">
+            <!-- <label class="form-label">Reps</label> -->
+            <input
+              class="form-control"
+              type="number"
+              name="reps"
+              placeholder="Reps"
+            />
+          </div>
+        </div>
+      </div>
+      <div id="extraSets_{{ exercise.id }}" class="row">
+        <!-- Sets to be added -->
+      </div>
+    </div>
+    <button
+      class="btn btn-secondary add-set"
+      type="button"
+      onclick="addSet('{{ exercise.id }}')"
+    >
+      Add set
+    </button>
+    <button
+      class="btn btn-secondary rm-set"
+      type="button"
+      onclick="removeSet('{{ exercise.id }}')"
+    >
+      Remove Set
+    </button>
+  </div>
+  {% endfor %}
+  <div class="d-grid gap-2 col-2 mx-auto">
+    <button class="btn btn-primary" type="submit">Save</button>
+  </div>
+</form>
+<script src="{{ url_for('static', filename='js/addSet.js') }}" defer></script>
+{% endblock %}

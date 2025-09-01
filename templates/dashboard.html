@@ -1,0 +1,98 @@
+{% extends "layout.html" %} {% block title %} Dashboard {% endblock %} {% block
+main %}
+<div class="dashboard-container">
+  <article class="dashboard-card side-stats">
+    <h2>Showcase</h2>
+    {% if stats.squat_pr %}
+    <table class="prev-table">
+      <tbody>
+        <tr>
+          <td>Squat</td>
+          <td>{{stats.squat_pr}}</td>
+        </tr>
+        <tr>
+          <td>Bench</td>
+          <td>{{stats.bench_pr}}</td>
+        </tr>
+        <tr>
+          <td>Deadlift</td>
+          <td>{{stats.deadlift_pr}}</td>
+        </tr>
+      </tbody>
+    </table>
+    {% else %}
+    <p>Tell us your prs for the "Big 3"</p>
+    <p>
+      Don't worry about coming back to update them, simply log it as usual in
+      your workout and we'll handle the rest
+    </p>
+    <form action="/dashboard" method="post">
+      <div class="form-div">
+        <label class="form-label">Squat PR</label>
+        <input class="" type="number" name="squat" placeholder="Weight" />
+      </div>
+      <div class="form-div">
+        <label class="form-label">Bench PR</label>
+        <input class="" type="number" name="bench" placeholder="Weight" />
+      </div>
+      <div class="form-div">
+        <label class="form-label">Deadlift PR</label>
+        <input class="" type="number" name="deadlift" placeholder="Weight" />
+      </div>
+      <div class="d-grid gap-2 col-2 mx-auto">
+        <button class="btn btn-primary" type="submit">Save</button>
+      </div>
+    </form>
+    {% endif %}
+  </article>
+  <article class="dashboard-card side-stats stat-container">
+    <h2>Stats</h2>
+    <table class="prev-table">
+      <tbody>
+        <tr>
+          <td>Workouts completed</td>
+          <td>{{stats.workouts_completed}}</td>
+        </tr>
+        <tr>
+          <td>Workouts created</td>
+          <td>{{stats.workouts_created}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+  {% if last_workout %}
+  <article class="dashboard-card lw">
+    <h2>Last workout</h2>
+    <div class="lw-content">
+      <h3>{{ last_workout.name }}</h3>
+      {% for log in last_log %}
+      <h4>{{ log.exercise.name }}</h4>
+
+      <table class="prev-table">
+        <thead>
+          <th>Set</th>
+          <th>Weight</th>
+          <th>Reps</th>
+        </thead>
+        {% for set in log.sets %}
+        <tbody>
+          <tr>
+            <td>{{set.set_number}}</td>
+            <td>{{set.weight}}</td>
+            <td>{{set.reps}}</td>
+          </tr>
+        </tbody>
+
+        {% endfor %}
+      </table>
+      {% endfor %}
+    </div>
+  </article>
+  {% else %}
+  <article class="dashboard-card no-lw">
+    <h4>No workouts logged yet</h4>
+  </article>
+  {% endif %}
+</div>
+
+{% endblock %}

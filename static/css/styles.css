@@ -1,0 +1,244 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+.message {
+  text-align: center;
+}
+
+body {
+  background-color: black;
+  color: white;
+}
+
+/* taken from "Learn CSS Grid the easy way" by Kevin Powell https://github.com/kevin-powell/learn-grid-the-easy-way */
+.grid-container {
+  display: grid;
+  gap: 1.5rem;
+  padding-block: 2rem;
+  width: min(95%, 70rem);
+  margin-inline: auto;
+  align-content: center;
+  text-align: center;
+}
+
+/* taken from "Learn CSS Grid the easy way" by Kevin Powell https://github.com/kevin-powell/learn-grid-the-easy-way */
+.workout-card {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 2.5rem 3.75rem 3rem -3rem hsl(var(--clr-secondary-400) / 0.25);
+  /* justify-self: center;
+  align-self: center; */
+}
+
+.workout-container {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  @media (width >= 768px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.workout-form {
+  display: flex;
+  flex-direction: column;
+  background-color: indigo;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.card {
+  justify-self: center;
+  align-self: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* .card-body {
+  width: 200px;
+} */
+
+.card-button {
+  background-color: transparent;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+  border-color: rgba(0, 0, 0, 0.125);
+}
+
+.accordion-item {
+  border: none;
+}
+
+.accordion {
+  --bs-accordion-active-bg: transparent;
+  --bs-accordion-active-color: #ffffff;
+}
+.accordion-button {
+  font-weight: bold;
+  text-align: center;
+  justify-content: center;
+}
+
+.register-heading {
+  padding: 1rem;
+}
+
+.btn {
+  background-color: gray;
+  color: white;
+  border: transparent;
+}
+
+.prev-table {
+  width: 100%;
+  border: rgb(62, 12, 99) solid;
+  justify-content: space-evenly;
+  align-content: space-evenly;
+  table-layout: fixed;
+}
+
+th,
+td {
+  border: rgb(62, 12, 99) solid;
+  padding: 2px 5px 2px 5px;
+}
+
+.add-set {
+  margin-top: 1rem;
+}
+
+.log-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0rem;
+  padding: 1rem;
+  background-color: indigo;
+  border-radius: 1rem;
+  margin-bottom: 10px;
+}
+
+.prev-log {
+  /* background-color: rgb(62, 12, 99); */
+  padding: 1rem;
+}
+
+.prev-log > h3 {
+  text-align: left;
+  font-size: medium;
+}
+
+.log-sets {
+  margin-bottom: 5px;
+}
+
+.log-set-container {
+  padding: 1.5rem 0rem 1.5rem 0.5rem;
+  align-self: center;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: indigo;
+  border-radius: 1rem;
+  gap: 20px;
+}
+
+.exercise-title {
+  background-color: indigo;
+  padding: 0.5rem 0rem 0.5rem 0rem;
+  border-bottom: #ffffff solid;
+  font-size: large;
+}
+
+.add-exercise-btn {
+  color: white;
+  background-color: transparent;
+  border: transparent;
+  padding: 1rem;
+  text-align: center;
+}
+
+.delete-exercise {
+  color: crimson;
+  background-color: transparent;
+}
+
+.lw-content {
+  padding: 1rem;
+}
+
+.lw-content > h4 {
+  padding: 0.5rem;
+  font-size: large;
+  margin-top: 1rem;
+}
+
+.rm-set {
+  background-color: rgb(165, 38, 101);
+  margin-top: 1rem;
+}
+
+.rm-set:hover {
+  background-color: crimson;
+}
+
+.side-stats {
+  background-color: rgb(59, 59, 59);
+  padding: 1rem;
+  border-radius: 1rem;
+  min-height: 200px;
+}
+
+.stat-container {
+  align-self: start;
+}
+
+.form-div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  background-color: rgb(0, 0, 0, 20%);
+  padding: 10px;
+  /* margin: 3px; */
+}
+
+.form-div > input {
+  border-radius: 10px;
+  padding-left: 5px;
+}
+
+.dashboard-container {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  @media (width >= 768px) {
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 1fr 2fr;
+  }
+}
+
+.lw {
+  @media (width >= 768px) {
+    grid-column-start: 2;
+    grid-row-start: 1;
+    grid-row-end: 4;
+  }
+}
+
+.no-lw {
+  background-color: rgb(59, 59, 59);
+  padding: 1rem;
+  border-radius: 1rem;
+  min-height: 200px;
+  @media (width >= 768px) {
+    grid-column-start: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    height: 100%;
+  }
+}

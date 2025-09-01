@@ -1,0 +1,77 @@
+{% extends "layout.html" %} {% block title %} Create a Workout {% endblock %} {%
+block main %}
+<h1>Create a Workout</h1>
+{% if session["username"] %}
+<form action="/add-workout" method="post" class="workout-form">
+  <div class="mb-3">
+    <label class="form-label">Workout name</label>
+    <input
+      autocomplete="off"
+      autofocus
+      class="form-control"
+      type="text"
+      name="workout_name"
+    />
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Workout description</label>
+    <textarea
+      autocomplete="off"
+      class="form-control"
+      type="text"
+      name="description"
+    ></textarea>
+  </div>
+  <div class="mb-3" id="types">
+    <label class="form-label">Select workout category</label>
+    <select class="form-control" name="type">
+      {% for type in types %}
+      <option>{{type.type}}</option>
+      {% endfor %}
+    </select>
+    <button
+      class="btn btn-danger"
+      type="button"
+      onclick="removeExercise(1)"
+      hidden
+    >
+      Remove
+    </button>
+  </div>
+  <div id="exercise_fields">
+    <div class="mb-4" id="exercise_1">
+      <label class="form-label">Select an exercise</label>
+      <select class="form-control" name="exercise">
+        {% for exercise in exercises %}
+        <option>{{exercise.name}}</option>
+        {% endfor %}
+      </select>
+      <button
+        class="btn delete-exercise"
+        type="button"
+        onclick="removeExercise(1)"
+        hidden
+      >
+        <span class="material-icons"> cancel </span>
+      </button>
+    </div>
+    <!-- additional exercises go here -->
+  </div>
+  <div class="d-grid gap-2 col-2 mx-auto">
+    <button
+      class="add-exercise-btn workout-btn"
+      type="button"
+      onclick="addExercise()"
+    >
+      <span class="material-icons"> add </span>
+    </button>
+  </div>
+  <div class="d-grid gap-2 col-2 mx-auto mt-2">
+    <button class="btn btn-secondary" type="submit">Save</button>
+  </div>
+</form>
+
+<script src="{{ url_for('static', filename='js/addworkout.js') }}"></script>
+{% else %}
+<button class="btn btn-primary" onclick="location.href='/login'">Login</button>
+{% endif %} {% endblock %}

@@ -1,0 +1,52 @@
+{% extends "layout.html" %} {% block title %} Home {% endblock %} {% block main
+%} {% if session["username"] %}
+<div>
+  <p>Welcome, {{ session["username"] }}</p>
+</div>
+<div>
+  <img
+    src="/static/images/pixil-frame-0.png"
+    alt="MyFitnessJNL logo"
+    width="200"
+    height="200"
+  />
+</div>
+<div>
+  <h1>MyFitnessJNL</h1>
+</div>
+{% else %}
+<form action="/login" method="post">
+  <div class="mb-3">
+    <label class="form-label">Username</label>
+    <input
+      autocomplete="off"
+      autofocus
+      class="form-control mx-auto w-auto"
+      type="text"
+      name="username"
+    />
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Password</label>
+    <input
+      autocomplete="off"
+      class="form-control mx-auto w-auto"
+      type="password"
+      name="password"
+    />
+  </div>
+  <button class="btn btn-primary" type="submit">Login</button>
+</form>
+<div>
+  <p></p>
+  <a href="/register">Don't have an account? register here</a>
+</div>
+<div>
+  <img
+    src="/static/images/pixil-frame-0.png"
+    alt="MyFitnessJNL logo"
+    width="200"
+    height="200"
+  />
+</div>
+{% endif %} {% endblock %}
