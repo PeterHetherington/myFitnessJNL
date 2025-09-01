@@ -4,7 +4,12 @@ from datetime import datetime, timedelta
 from models import db, User, ExerciseType, Workout, Exercise, WorkoutType, WorkoutExercise, TrainingSession, Logbook, Set, Stats
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import desc
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 app = Flask(__name__)
+
 
 # configure SQLAlchemy
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -13,7 +18,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)  # Initialize db with app
 
 # secret key
-app.secret_key = "FrancescoTotti23"
+app.secret_key = os.getenv("SECRET_KEY")
 
 @app.route("/")
 def index():
